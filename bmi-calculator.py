@@ -7,7 +7,31 @@
         # Obesity: 30 or greater
 
 def BMI(weight, height):
-    return weight/(height*height)
+    result = round(weight/(height*height),2)
+    if(result <= 18.5):
+        return(f"""
+                BMI is {(result)}
+                SERIOUSLY UNDERWEIGHT!!!
+                """)
+    elif(result <= 24.9 and result > 18.5):   
+        return(f"""
+                BMI is {round(result)}
+                NORMAL WEIGHT
+                """)
+    elif(result <= 30 and result > 24.9):
+        return(f"""
+                BMI is {round(result)}
+                OVER WEIGHT!!!
+                """)
+    elif(result > 30):
+        return(f"""
+        BMI is {round(result)}
+        !!! OBESE !!!
+        """)
+
+
+
+
 
 weight = float(input("enter your weight"))
 height = float(input("enter your height"))
