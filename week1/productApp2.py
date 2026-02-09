@@ -42,7 +42,8 @@ def select_action():
                                         5. Check Stock Levels
                                         6. Calculate Reorder Levels
                                         7. Update Product Details
-                                        8. Exit
+                                        8. Verify supplier
+                                        9.exit
                 """)
             action_map = {
                     1: display_inventory_history,
@@ -52,12 +53,13 @@ def select_action():
                     5: check_stock_levels,
                     6: calculate_reorder_levels,
                     7: update_product_details,
+                    8: verify_supplier
                 }
 
             try:    
                 action = int(input("eneter the listed number to perform the respective action (1 to 8)"))
-                if 1 <= action <= 8:
-                    if action == 8:
+                if 1 <= action <= 9:
+                    if action == 9:
                          break
                     action_map[action]()
                 else:
@@ -134,6 +136,21 @@ def update_product_details():
                     Updated details of the product
                     {product_details[product_pointer]}
 """)
+
+# check if a supplier is in our suppplier database
+def verify_supplier():
+    for product in product_details:
+        print(product)
+
+    product_pointer = input("""
+        enter which product to verify
+    """)
+    if product_details[product_pointer]['supplier'] in supplier_cred:
+        print(f"""
+        supplier found in database
+            VERIFIED SUPPLIER-{product_details[product_pointer]['supplier']}
+""")
+
 
 
 if __name__ == "__main__":
