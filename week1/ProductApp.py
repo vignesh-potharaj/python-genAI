@@ -141,3 +141,5 @@ def update_product_details():
 
 if __name__ == "__main__":
     select_action()
+
+# forgot to add supplier creds
