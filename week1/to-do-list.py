@@ -5,6 +5,7 @@ tasks = [
     "take the dog for a walk"
 ]
 
+# Main function that displays the menu and handles user actions for the to-do list application
 def to_do_list():
     while True:
         print("""
@@ -34,10 +35,12 @@ def to_do_list():
         except ValueError:
             print("please enter a valid number")
 
+# Displays all current tasks in the to-do list with their numbered positions
 def display_list():
     for task in tasks:
         print(f"{tasks.index(task) + 1}.{task}")
 
+# Displays the current tasks, prompts the user to enter a new task, and adds it to the list
 def add_to_list():
     for task in tasks:
         print(f"{tasks.index(task) + 1}.{task}")
@@ -48,6 +51,7 @@ def add_to_list():
     for task in tasks:
         print(f"{tasks.index(task) + 1}.{task}")
 
+# Displays all tasks, prompts the user to select a task by number, and removes it from the list
 def remove_from_list():
     for task in tasks:
         print(f"{tasks.index(task) + 1}.{task}")
@@ -59,6 +63,7 @@ def remove_from_list():
         print(f"{tasks.index(task) + 1}.{task}")
 
 
+# Saves all current tasks to a text file specified by the user, or to 'todo.txt' by default
 def save_to_file():
     file_name = input("enter the filename(default name is todo.txt)").strip()
     if not file_name:
