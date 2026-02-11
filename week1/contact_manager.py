@@ -128,10 +128,11 @@ def main():
         except ValueError:
             print("please enter a valid number")
         
+def view_all_contact():
+    for contact in contacts:
+        print(f"{contact['name']}-----{contact['phone']}")
 
 def add_contact():
-    pass
-def view_all_contact():
     pass
 def search_contact():
     pass
