@@ -94,8 +94,8 @@ def main():
         print("""
                 WeLCOME TO CONTACT MANAGER APP"
               
-                1. Add Contact
-                2. View All Contacts
+                1. View All Contacts
+                2. Add Contact
                 3. Search Contact
                 4. Show All Tags
                 5. Add Tag
@@ -106,8 +106,8 @@ def main():
         """)
 
         action_map = {
-            1: add_contact,
-            2: view_all_contact,
+            1: view_all_contact,
+            2: add_contact,
             3: search_contact,
             4:show_all_tags,
             5: add_tag,
