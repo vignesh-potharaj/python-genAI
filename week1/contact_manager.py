@@ -89,3 +89,63 @@ contacts = [
     }
 ]
 
+def main():
+    while True:
+        print("""
+                WeLCOME TO CONTACT MANAGER APP"
+              
+                1. Add Contact
+                2. View All Contacts
+                3. Search Contact
+                4. Show All Tags
+                5. Add Tag
+                6. Remove Tag
+                7. Filter by Tag
+                8. Export
+                9. Exit
+        """)
+
+        action_map = {
+            1: add_contact,
+            2: view_all_contact,
+            3: search_contact,
+            4:show_all_tags,
+            5: add_tag,
+            6: remove_tag,
+            7: filter_by_tag,
+            8: export_data
+        }
+        try:
+            action = int(input("enter a number from 1 to 9 as to select an action"))
+            if 1 <= action <= 9:
+                if action == 9:
+                    print("exiting...........")
+                    break
+                action_map[action]()
+            else:
+                print("please enter a value between 1 to 9")
+        
+        except ValueError:
+            print("please enter a valid number")
+        
+
+def add_contact():
+    pass
+def view_all_contact():
+    pass
+def search_contact():
+    pass
+def show_all_tags():
+    pass
+def add_tag():
+    pass
+def remove_tag():
+    pass
+def filter_by_tag():
+    pass
+def export_data():
+    pass
+
+if __name__ == "__main__":
+    main()
+
