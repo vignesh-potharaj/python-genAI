@@ -116,14 +116,14 @@ def main():
             8: export_data
         }
         try:
-            action = int(input("enter a number from 1 to 9 as to select an action"))
+            action = int(input("enter a number from 1 to 9 as to select an action "))
             if 1 <= action <= 9:
                 if action == 9:
                     print("exiting...........")
                     break
                 action_map[action]()
             else:
-                print("please enter a value between 1 to 9")
+                print("please enter a value between 1 to 9 ")
         
         except ValueError:
             print("please enter a valid number")
@@ -133,7 +133,19 @@ def view_all_contact():
         print(f"{contact['name']}-----{contact['phone']}")
 
 def add_contact():
-    pass
+    name_of_c = input("enter the name of the contact ")
+    phone_of_c = int(input("enter the phone number "))
+    email_of_c = input("enter the email of the contact ")
+    company_of_c = input("enter the company of the contac ")
+    job_of_c = input("enter the job of the contact ")
+    new_dict = {'name' : name_of_c,
+                 'phone' : phone_of_c,
+                 'email' : email_of_c,
+                 'company' : company_of_c,
+                 'job' : job_of_c }
+    print(f"Successfully added a new contact {new_dict}")
+    contacts.append(new_dict)
+
 def search_contact():
     pass
 def show_all_tags():
