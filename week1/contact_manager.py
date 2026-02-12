@@ -127,7 +127,28 @@ def main():
         
         except ValueError:
             print("please enter a valid number")
-        
+
+def display_contact(contact):
+    print("\n" + "-" * 50)
+    print("CONTACT DETAILS")
+    print("-" * 50)
+
+    print(f"{'Name':12} : {contact.get('name', 'N/A')}")
+    print(f"{'Phone':12} : {contact.get('phone', 'N/A')}")
+    print(f"{'Email':12} : {contact.get('email', 'N/A')}")
+    print(f"{'Company':12} : {contact.get('company', 'N/A')}")
+    print(f"{'Job Title':12} : {contact.get('job_title', 'N/A')}")
+    print(f"{'Address':12} : {contact.get('address', 'N/A')} \n")
+
+    # # Handle tags properly
+    # tags = contact.get("tags", [])
+    # if tags:
+    #     print(f"{'Tags':12} : {', '.join(tags)}")
+    # else:
+    #     print(f"{'Tags':12} : No tags")
+
+    # print("-" * 50 + "\n")
+
 def view_all_contact():
     for contact in contacts:
         print(f"{contact['name']}-----{contact['phone']}")
