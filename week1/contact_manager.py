@@ -13,7 +13,8 @@ contacts = [
         "email": "rohit.sharma@techvista.in",
         "address": "Flat 402, Green Residency, Madhapur, Hyderabad, Telangana 500081",
         "company": "TechVista Solutions",
-        "job_title": "Software Engineer"
+        "job_title": "Software Engineer",
+        "tags": ["Work", "Tech", "Client", "Hyderabad", "Q1"]
     },
     {
         "name": "Ananya Reddy",
@@ -21,7 +22,8 @@ contacts = [
         "email": "ananya.reddy@medilife.in",
         "address": "H.No 8-3-214, Srinagar Colony, Hyderabad, Telangana 500073",
         "company": "MediLife Hospitals",
-        "job_title": "HR Manager"
+        "job_title": "HR Manager",
+        "tags": ["Work", "Healthcare", "HR", "Hyderabad"]
     },
     {
         "name": "Karthik Iyer",
@@ -29,7 +31,8 @@ contacts = [
         "email": "karthik.iyer@finedge.com",
         "address": "Plot 17, Jubilee Hills, Hyderabad, Telangana 500033",
         "company": "FinEdge Analytics",
-        "job_title": "Data Analyst"
+        "job_title": "Data Analyst",
+        "tags": ["Work", "Finance", "Client", "VIP", "Q2"]
     },
     {
         "name": "Meera Nair",
@@ -37,7 +40,8 @@ contacts = [
         "email": "meera.nair@creativeminds.in",
         "address": "Flat 12B, Lakeview Apartments, Gachibowli, Hyderabad, Telangana 500032",
         "company": "Creative Minds Studio",
-        "job_title": "Marketing Head"
+        "job_title": "Marketing Head",
+        "tags": ["Work", "Marketing", "Client", "Hyderabad"]
     },
     {
         "name": "Arjun Verma",
@@ -45,7 +49,8 @@ contacts = [
         "email": "arjun.verma@buildcore.in",
         "address": "Villa 23, Palm Meadows, Kompally, Hyderabad, Telangana 500014",
         "company": "BuildCore Constructions",
-        "job_title": "Project Manager"
+        "job_title": "Project Manager",
+        "tags": ["Work", "Construction", "Client"]
     },
     {
         "name": "Sneha Patel",
@@ -53,7 +58,8 @@ contacts = [
         "email": "sneha.patel@healthplus.in",
         "address": "Flat 8A, Sunrise Towers, Kondapur, Hyderabad, Telangana 500084",
         "company": "HealthPlus Diagnostics",
-        "job_title": "Operations Executive"
+        "job_title": "Operations Executive",
+        "tags": ["Work", "Healthcare", "Operations"]
     },
     {
         "name": "Vikram Desai",
@@ -61,7 +67,8 @@ contacts = [
         "email": "vikram.desai@cloudnet.in",
         "address": "H.No 5-9-30, Himayatnagar, Hyderabad, Telangana 500029",
         "company": "CloudNet Technologies",
-        "job_title": "DevOps Engineer"
+        "job_title": "DevOps Engineer",
+        "tags": ["Work", "Tech", "DevOps", "VIP"]
     },
     {
         "name": "Priya Menon",
@@ -69,7 +76,8 @@ contacts = [
         "email": "priya.menon@eduprime.in",
         "address": "Flat 501, Skyline Heights, Begumpet, Hyderabad, Telangana 500016",
         "company": "EduPrime Academy",
-        "job_title": "Academic Coordinator"
+        "job_title": "Academic Coordinator",
+        "tags": ["Work", "Education", "Academic"]
     },
     {
         "name": "Rahul Gupta",
@@ -77,7 +85,8 @@ contacts = [
         "email": "rahul.gupta@retailhub.in",
         "address": "Plot 44, Banjara Hills, Hyderabad, Telangana 500034",
         "company": "RetailHub Pvt Ltd",
-        "job_title": "Sales Director"
+        "job_title": "Sales Director",
+        "tags": ["Work", "Sales", "Retail", "VIP"]
     },
     {
         "name": "Divya Kapoor",
@@ -85,7 +94,8 @@ contacts = [
         "email": "divya.kapoor@nextgenai.in",
         "address": "Flat 903, Cyber Heights, HITEC City, Hyderabad, Telangana 500081",
         "company": "NextGen AI Labs",
-        "job_title": "AI Research Associate"
+        "job_title": "AI Research Associate",
+        "tags": ["Work", "Tech", "AI", "Research", "Q2"]
     }
 ]
 
@@ -127,6 +137,7 @@ def main():
         
         except ValueError:
             print("please enter a valid number")
+
 def get_yes_no(prompt):
     while True:
         choice = input(prompt).strip().lower()
@@ -174,7 +185,6 @@ def view_all_contact():
         except ValueError:
             print("please enter a valid number")
 
-
 def add_contact():
     new_dict = {'name' : input("enter the name of the contact "),
                  'phone' : int(input("enter the phone number ")),
@@ -190,7 +200,6 @@ def add_contact():
         add_contact()
     else:
         return
-
 
 def search_contact():
     contact_pointer = input("enter the name of the contact you want to search")
