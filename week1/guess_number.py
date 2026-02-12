@@ -1,10 +1,11 @@
 import random
 
 def number_guessing_game():
-    print("Welcome to number guessing game, you get 10 chances to guess the number")
     random_number = random.randint(1,100)
     current_chance = 0
-    max_chances = 10
+    max_chances = 5
+    print(f"Welcome to number guessing game, you get {max_chances} chances to guess the number")
+
 
     while current_chance < max_chances:
         try:
