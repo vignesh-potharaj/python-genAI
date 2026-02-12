@@ -171,15 +171,18 @@ def add_contact():
     name_of_c = input("enter the name of the contact ")
     phone_of_c = int(input("enter the phone number "))
     email_of_c = input("enter the email of the contact ")
+    address_of_c = input("enter the address of the contact ")
     company_of_c = input("enter the company of the contac ")
     job_of_c = input("enter the job of the contact ")
     new_dict = {'name' : name_of_c,
                  'phone' : phone_of_c,
                  'email' : email_of_c,
+                 'address': address_of_c,
                  'company' : company_of_c,
-                 'job' : job_of_c }
-    print(f"Successfully added a new contact {new_dict}")
+                 'job_title' : job_of_c }
+    print(f" \n \n Successfully added a new contact ")
     contacts.append(new_dict)
+    display_contact(contacts[-1])
 
 def search_contact():
     pass
