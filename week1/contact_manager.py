@@ -148,6 +148,14 @@ def display_contact(contact):
     #     print(f"{'Tags':12} : No tags")
 
     # print("-" * 50 + "\n")
+def get_yes_no(prompt):
+    while True:
+        choice = input(prompt).strip().lower()
+
+        if choice in ("y", "n"):
+            return choice
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
 
 def view_all_contact():
     for contact in contacts:
