@@ -127,6 +127,14 @@ def main():
         
         except ValueError:
             print("please enter a valid number")
+def get_yes_no(prompt):
+    while True:
+        choice = input(prompt).strip().lower()
+
+        if choice in ("y", "n"):
+            return choice
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
 
 def display_contact(contact):
     print("\n" + "-" * 50)
@@ -148,14 +156,6 @@ def display_contact(contact):
     #     print(f"{'Tags':12} : No tags")
 
     # print("-" * 50 + "\n")
-def get_yes_no(prompt):
-    while True:
-        choice = input(prompt).strip().lower()
-
-        if choice in ("y", "n"):
-            return choice
-        else:
-            print("Invalid input. Please enter 'y' or 'n'.")
 
 def view_all_contact():
     for contact in contacts:
@@ -176,21 +176,21 @@ def view_all_contact():
 
 
 def add_contact():
-    name_of_c = input("enter the name of the contact ")
-    phone_of_c = int(input("enter the phone number "))
-    email_of_c = input("enter the email of the contact ")
-    address_of_c = input("enter the address of the contact ")
-    company_of_c = input("enter the company of the contac ")
-    job_of_c = input("enter the job of the contact ")
-    new_dict = {'name' : name_of_c,
-                 'phone' : phone_of_c,
-                 'email' : email_of_c,
-                 'address': address_of_c,
-                 'company' : company_of_c,
-                 'job_title' : job_of_c }
+    new_dict = {'name' : input("enter the name of the contact "),
+                 'phone' : int(input("enter the phone number ")),
+                 'email' : input("enter the email of the contact "),
+                 'address': input("enter the address of the contact "),
+                 'company' : input("enter the company of the contac "),
+                 'job_title' :  input("enter the job of the contact ") }
     print(f" \n \n Successfully added a new contact ")
     contacts.append(new_dict)
     display_contact(contacts[-1])
+    
+    if get_yes_no("do you want to add more?(y or n) ") == 'y':
+        add_contact()
+    else:
+        return
+
 
 def search_contact():
     pass
