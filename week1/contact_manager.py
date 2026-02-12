@@ -151,7 +151,21 @@ def display_contact(contact):
 
 def view_all_contact():
     for contact in contacts:
-        print(f"{contact['name']}-----{contact['phone']}")
+        print(f"{contacts.index(contact) + 1}. {contact['name']}------{contact['phone']}")
+    print(f"{len(contacts) + 1}. Exit")
+    while True:
+        try:
+            next_action = int(input(f"enter a number to view more details of a contact (or) enter {len(contacts) + 1} to exit"))
+            if next_action == len(contacts) + 1:
+                print("exiting action 1.................")
+                break
+            elif 1 <= next_action <= len(contacts):
+                display_contact(contacts[next_action - 1])
+            else: 
+                print(f"please enter a value between 1 and {len(contacts) + 1}")
+        except ValueError:
+            print("please enter a valid number")
+
 
 def add_contact():
     name_of_c = input("enter the name of the contact ")
