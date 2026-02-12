@@ -212,7 +212,17 @@ def search_contact():
         return
 
 def show_all_tags():
-    pass
+    set_of_tags = set()
+    for contact in contacts:
+        for tag in contact['tags']:
+            set_of_tags.add(tag)
+    list_of_tags = sorted(set_of_tags)
+    print("---- AVAILABLE TAGS ----")
+    for  tag in list_of_tags:
+        print(f"{list_of_tags.index((tag)) + 1}. {tag}")
+    print("------------------------")
+    if get_yes_no("do you wish to filter contacts by any tag? ('y' or 'n')") == 'y':
+        filter_by_tag()
 def add_tag():
     pass
 def remove_tag():
@@ -224,4 +234,3 @@ def export_data():
 
 if __name__ == "__main__":
     main()
-
