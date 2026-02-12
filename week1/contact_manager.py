@@ -193,7 +193,15 @@ def add_contact():
 
 
 def search_contact():
-    pass
+    contact_pointer = input("enter the name of the contact you want to search")
+    for contact in contacts:
+        if contact_pointer in contact['name']:
+            display_contact(contact)
+    if get_yes_no("do you want to search more?(y or n) ") == 'y':
+        search_contact()
+    else:
+        return
+
 def show_all_tags():
     pass
 def add_tag():
