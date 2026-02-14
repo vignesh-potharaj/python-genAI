@@ -5,7 +5,8 @@ product_details = {
         "location": "warehouse_A",
         "rating": 4.5,
         "supplier": "SUP1",
-        "stock": 2
+        "stock": 2,
+        "price": 459
     },
     "product2" : {
         "name": "basketball",
@@ -13,7 +14,8 @@ product_details = {
         "location": "warehouse_B",
         "rating": 4.8,
         "supplier": "SUP2",
-        "stock": 7
+        "stock": 7,
+        "price": 999
     },
     "product3" : {
     "name": "volleyball",
@@ -21,7 +23,9 @@ product_details = {
     "location": "warehouse_C",
     "rating": 5,
     "supplier": "SUP3",
-    "stock": 0
+    "stock": 0,
+    "price": 1229
+
     }
 }
 inventory_history = [100, 50, 75, 120, 45]
@@ -29,6 +33,7 @@ transaction_history = []
 supplier_cred = ("SUP1","SUP2") 
 
 warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
+cart = []
 
 
 def select_action():
@@ -70,7 +75,7 @@ def select_action():
     
 def display_inventory_history():
     print("Diplaying Inventory History")
-    print(inventory_history)
+    return (inventory_history) ## return function    
 def upadte_transactions():
     global transaction_history
     action = int(input("enter transaction (+ for credit && - for debit"))
@@ -153,6 +158,7 @@ def verify_supplier():
 
 
 
+# Add an item 
 if __name__ == "__main__":
     select_action()
 
