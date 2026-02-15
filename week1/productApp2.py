@@ -50,7 +50,7 @@ def select_action():
                                         8. Verify supplier
                                         9. View Cart
                                         10. Add to Cart
-                                        11. View Cart
+                                        11. Check Out
                                         12.exit
                 """)
             action_map = {
@@ -79,6 +79,15 @@ def select_action():
 
             except ValueError:
                 print("enter a valid number")
+def get_yes_no(prompt):
+    while True:
+        choice = input(prompt).strip().lower()
+
+        if choice in ("y", "n"):
+            return choice
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
+
 def print_decorator(func): #args, kwargs, decorators
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
@@ -181,7 +190,18 @@ def view_cart(cart=None): #deafault parameter
     print(f"Final Amount is {total}")
 
 def add_to_cart():
-    pass
+    for product in product_details:
+        print(f"{product}\n name: {product_details[product]['name']} \n price: {product_details[product]['price']}")
+
+    product_pointer = input("enter which product to add to cart\n")
+    my_cart.append(product_pointer)
+    print("cart successfully updated")
+    view_cart(my_cart)
+    get_yes_no("do you want to add more?(y or n) ")
+    if get_yes_no == 'n':
+        return
+    else:
+        add_to_cart() #recursive function
 
 def check_out():
     pass
@@ -191,5 +211,3 @@ def check_out():
 # Add an item 
 if __name__ == "__main__":
     select_action()
-
-# forgot to add supplier creds
