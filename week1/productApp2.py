@@ -33,8 +33,8 @@ transaction_history = []
 supplier_cred = ("SUP1","SUP2") 
 
 warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
-cart = []
-
+my_cart = []
+shipping_charges = lambda cart: int(cart * 0.1) # lambda function
 
 def select_action():
     while True:
@@ -48,7 +48,10 @@ def select_action():
                                         6. Calculate Reorder Levels
                                         7. Update Product Details
                                         8. Verify supplier
-                                        9.exit
+                                        9. View Cart
+                                        10. Add to Cart
+                                        11. View Cart
+                                        12.exit
                 """)
             action_map = {
                     1: display_inventory_history,
@@ -58,13 +61,17 @@ def select_action():
                     5: check_stock_levels,
                     6: calculate_reorder_levels,
                     7: update_product_details,
-                    8: verify_supplier
+                    8: verify_supplier,
+                    9: lambda: view_cart(my_cart),
+                    10: add_to_cart,
+                    11: check_out
                 }
+            length_of_actions = len(action_map) + 1
 
             try:    
-                action = int(input("eneter the listed number to perform the respective action (1 to 8)"))
-                if 1 <= action <= 9:
-                    if action == 9:
+                action = int(input(f"eneter the listed number to perform the respective action (1 to {length_of_actions})"))
+                if 1 <= action <= length_of_actions:
+                    if action == length_of_actions:
                          break
                     action_map[action]()
                 else:
@@ -72,7 +79,12 @@ def select_action():
 
             except ValueError:
                 print("enter a valid number")
-    
+def print_decorator(func): #args, kwargs, decorators
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        print(result)
+    return wrapper
+@print_decorator
 def display_inventory_history():
     print("Diplaying Inventory History")
     return (inventory_history) ## return function    
@@ -155,6 +167,24 @@ def verify_supplier():
         supplier found in database
             VERIFIED SUPPLIER-{product_details[product_pointer]['supplier']}
 """)
+        
+def view_cart(cart=None): #deafault parameter
+    if cart is None:
+        cart = ["product1"]
+    total = 0
+    for item in cart:
+        print(f"name : {product_details[item]['name']} \n    price: {product_details[item]['price']}")
+        total = total +  product_details[item]['price']
+    print(f"Total value of the cart is {total}")
+    print(f"Shipping charges are {shipping_charges(total)}")
+    total = total + shipping_charges(total)
+    print(f"Final Amount is {total}")
+
+def add_to_cart():
+    pass
+
+def check_out():
+    pass
 
 
 
