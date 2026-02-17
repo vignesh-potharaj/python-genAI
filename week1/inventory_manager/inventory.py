@@ -1,4 +1,4 @@
-from products import product_details
+from inventory_manager.products import*
 from utils import print_decorator
 inventory_history = [100, 50, 75, 120, 45]
 transaction_history = []
