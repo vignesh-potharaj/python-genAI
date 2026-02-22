@@ -76,6 +76,6 @@ def upadte_transactions():
 
 # Build a list that captures only the positive stock 
 # additions from your inventory history.
-def view_only_positive_stock(inventory_history):
+def view_only_positive_stock():
     positive_stock = [ stock for stock in inventory_history if stock >= 1 ]
     print(positive_stock)

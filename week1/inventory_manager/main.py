@@ -18,8 +18,8 @@ def select_action():
                                         9. View Cart
                                         10. Add to Cart
                                         11. Check Out
-                                        13. View only positive stock transactions
-                                        12.exit
+                                        12. View only positive stock transactions
+                                        13.exit
                 """)
             action_map = {
                     1: display_inventory_history,
@@ -33,13 +33,13 @@ def select_action():
                     9: lambda: view_cart(my_cart),
                     10: add_to_cart,
                     11: check_out,
-                    12: lambda: view_only_positive_stock(inventory_history)
+                    12: view_only_positive_stock
                 }
             length_of_actions = len(action_map) + 1
 
             try:    
                 action = int(input(f"eneter the listed number to perform the respective action (1 to {length_of_actions})"))
-                if 1 <= action <= length_of_actions:
+                if 1 <= action <= length_of_actions :
                     if action == length_of_actions:
                          break
                     action_map[action]()
