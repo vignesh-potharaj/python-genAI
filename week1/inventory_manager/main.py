@@ -1,8 +1,8 @@
-from inventory import upadte_transactions, display_inventory_history, update_product_details, update_inventory, check_stock_levels, calculate_reorder_levels
-from suppliers import verify_supplier
-from warehouses import display_product_location
-from cart import view_cart, add_to_cart, check_out, my_cart
-
+from .inventory import  upadte_transactions, display_inventory_history, update_product_details, update_inventory, check_stock_levels, calculate_reorder_levels, view_only_positive_stock
+from .suppliers import verify_supplier
+from .warehouses import display_product_location
+from .cart import view_cart, add_to_cart, check_out, my_cart
+from .inventory import inventory_history
 def select_action():
     while True:
             print("""
@@ -18,6 +18,7 @@ def select_action():
                                         9. View Cart
                                         10. Add to Cart
                                         11. Check Out
+                                        13. View only positive stock transactions
                                         12.exit
                 """)
             action_map = {
@@ -31,7 +32,8 @@ def select_action():
                     8: verify_supplier,
                     9: lambda: view_cart(my_cart),
                     10: add_to_cart,
-                    11: check_out
+                    11: check_out,
+                    12: lambda: view_only_positive_stock(inventory_history)
                 }
             length_of_actions = len(action_map) + 1
 

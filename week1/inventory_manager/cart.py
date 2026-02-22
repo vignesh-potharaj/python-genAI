@@ -1,5 +1,5 @@
-from products import product_details
-from utils import get_yes_no
+from .products import product_details
+from .utils import get_yes_no
 my_cart = []
 shipping_charges = lambda cart: int(cart * 0.1) # lambda function
 

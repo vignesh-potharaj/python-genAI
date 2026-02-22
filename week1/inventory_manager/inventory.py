@@ -1,6 +1,6 @@
-from inventory_manager.products import*
-from utils import print_decorator
-inventory_history = [100, 50, 75, 120, 45]
+from .products import*
+from .utils import print_decorator
+inventory_history = [100, -30, 50, 75, -56, 120, 45, -325]
 transaction_history = []
 supplier_cred = ("SUP1","SUP2","SUP3") 
 
@@ -73,3 +73,9 @@ def upadte_transactions():
     action = int(input("enter transaction (+ for credit && - for debit"))
     transaction_history.append(action)
     print("updated transactions",transaction_history)
+
+# Build a list that captures only the positive stock 
+# additions from your inventory history.
+def view_only_positive_stock(inventory_history):
+    positive_stock = [ stock for stock in inventory_history if stock >= 1 ]
+    print(positive_stock)

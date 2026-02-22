@@ -1,5 +1,5 @@
 # check if a supplier is in our suppplier database
-from products import product_details
+from .products import product_details
 supplier_cred = ("SUP1", "SUP2", "SUP3") 
 
 def verify_supplier():

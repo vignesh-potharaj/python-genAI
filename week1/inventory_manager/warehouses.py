@@ -1,4 +1,4 @@
-from products import product_details
+from .products import product_details
 warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
 
 def display_product_location():
