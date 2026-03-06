@@ -15,6 +15,7 @@ def log_inventory(action, value):
     try:
         with open(LOG_FILE, "a") as log_file:
             json.dump(log, log_file)
+            log_file.write(",")
             log_file.write("\n")
             print("transaction log added")
     except Exception as e:
