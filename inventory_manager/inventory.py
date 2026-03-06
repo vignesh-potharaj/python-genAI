@@ -6,34 +6,13 @@ transaction_history = []
 supplier_cred = ("SUP1","SUP2","SUP3") 
 
 warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
-
-def update_product_details():
-    print('Products and their details \n')
-    for product in product_details:
-        print(product)
-    product_pointer = input("""
-                     enter which product to update
-    """)
-    update = input(f"""
-                     Select what info to update
-                     {product_details[product_pointer]}
-    """)
-    value = input("""
-                     Enter the Value
-    """)
-    product_details[product_pointer][update] = value
-    print(f"""
-                    Updated details of the product
-                    {product_details[product_pointer]}
-""")
-
 @print_decorator
-def display_inventory_history():
+def display_inventory_history(self):
     print("Diplaying Inventory History")
     return (inventory_history) ## return function    
 
 
-def update_inventory():
+def update_inventory(self):
     action = input("select an action(add or deduct)")
     value = int(input(f"enter the value to {action}"))
     if(action == "add"):
@@ -43,39 +22,3 @@ def update_inventory():
         inventory_history.remove(value, inventory_history.index(value))
         print("The updated inventory is",inventory_history)
     log_inventory(action, value)
-
-def check_stock_levels():
-        print("\n \n \n Stock levels for all products:")
-
-        for product in product_details:
-            if(product_details[product]["stock"] <= 5):
-                print(f"""
-                            ALERT!!
-                            LOW {product_details[product]['name']} STOCK is {product_details[product]['stock']} """)
-            else:
-                print(f"""
-                            Stock levels are fine 
-                            {product_details[product]['name']} STOCK is {product_details[product]['stock']}""")
-
-def calculate_reorder_levels():
-        print("\n \n \n The products we need to reorder are:")
-        for product in product_details:
-            if(product_details[product]["stock"] <= 5):
-
-                print(f"""
-                            We need to order more {5 - (product_details[product]['stock'])}  {product_details[product]['name']}s  """)
-            else:
-                print(f"""
-                            Stock levels are fine for {product_details[product]['name']}
-                             STOCK is {product_details[product]['stock']}""")           
-def upadte_transactions():
-    global transaction_history
-    action = int(input("enter transaction (+ for credit && - for debit"))
-    transaction_history.append(action)
-    print("updated transactions",transaction_history)
-
-# Build a list that captures only the positive stock 
-# additions from your inventory history.
-def view_only_positive_stock():
-    positive_stock = [ stock for stock in inventory_history if stock >= 1 ]
-    print(positive_stock)

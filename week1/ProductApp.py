@@ -50,7 +50,7 @@ def select_action():
                 if(action == 1):
                     display_inventory_history()
                 elif(action == 2):
-                    upadte_transactions()
+                    update_transactions()
                 elif(action == 3):
                     update_inventory()
                 elif(action == 4):
@@ -72,7 +72,7 @@ def select_action():
 def display_inventory_history():
     print("Diplaying Inventory History")
     print(inventory_history)
-def upadte_transactions():
+def update_transactions():
     global transaction_history
     action = int(input("enter transaction (+ for credit && - for debit"))
     transaction_history.append(action)
