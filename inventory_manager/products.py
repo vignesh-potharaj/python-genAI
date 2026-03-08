@@ -22,6 +22,34 @@ class Product:
             "price of product": price
         }
     def update_product_details(self):
+        while True:
+            try:
+                print('enter which product to update\n')
+                for index, product in enumerate(products):
+                    print(f"{index + 1} {product.name}")
+                product_index = int(input())
+                product_index = product_index - 1
+                product = products[product_index]
+                print(product.__dict__)
+                break
+            except Exception  as e:
+                print("error caught,", e)
+        while True:
+            try:
+                update = input(f"""
+                                Select what info to update
+                """).strip()
+                if update not in product.__dict__:
+                    raise Exception("value entered is not present, try again")
+                value = input("enetr the new value for the product").strip()
+                setattr(product, update, value)
+                print(product.__dict__)
+                return
+            except Exception  as e:
+                print("error caught,", e)
+        
+
+
         print('Products and their details \n')
         for product in products:
             print(product.name)
