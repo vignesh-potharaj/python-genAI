@@ -47,65 +47,33 @@ class Product:
                 return
             except Exception  as e:
                 print("error caught,", e)
-        
-
-
-        print('Products and their details \n')
-        for product in products:
-            print(product.name)
-        product_pointer = input("""
-                        enter which product to update
-        """)
-        update = input(f"""
-                        Select what info to update
-                        {product.items}
-        """)
-        value = input("""
-                        Enter the Value
-        """)
-        products[product_pointer][update] = value
-        print(f"""
-                        Updated details of the product
-                        {products[product_pointer]}
-    """)
-
 
     def check_stock_levels(self):
             print("\n \n \n Stock levels for all products:")
-
             for product in products:
-                if(products[product].stock <= 5):
+                if(product.stock <= 5):
                     print(f"""
                                 ALERT!!
-                                LOW {products[product].name} STOCK is {products[product]['stock']} """)
+                                LOW {product.name} STOCK is {product.stock} """)
                 else:
                     print(f"""
                                 Stock levels are fine 
-                                {products[product]['name']} STOCK is {products[product]['stock']}""")
+                                {product.name} STOCK is {product.stock}""")
 
     def calculate_reorder_levels(self):
             print("\n \n \n The products we need to reorder are:")
             for product in products:
-                if(products[product]["stock"] <= 5):
+                if(product.stock <= 5):
 
                     print(f"""
-                                We need to order more {5 - (products[product]['stock'])}  {products[product]['name']}s  """)
+                                We need to order more {5 - (product.stock)}  {product.name}s  """)
                 else:
                     print(f"""
-                                Stock levels are fine for {products[product]['name']}
-                                STOCK is {products[product]['stock']}""")           
-    def update_transactions(self):
-        global transaction_history
-        action = int(input("enter transaction (+ for credit && - for debit"))
-        transaction_history.append(action) 
-        print("updated transactions",transaction_history)
+                                Stock levels are fine for {product.name}
+                                STOCK is {product.stock}""")           
 
-    # Build a list that captures only the positive stock 
-    # additions from your inventory history.
-    def view_only_positive_stock(self):
-        positive_stock = [ stock for stock in inventory_history if stock >= 1 ]
-        print(positive_stock)
-
+# Build a list that captures only the positive stock 
+# additions from your inventory history.
 
 product1 = Product(name = "football",
         product_id = 1,

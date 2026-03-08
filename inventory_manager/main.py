@@ -2,7 +2,7 @@ from .inventory import display_inventory_history, update_inventory
 from .suppliers import verify_supplier
 from .warehouses import display_product_location
 from .cart import view_cart, add_to_cart, check_out, my_cart
-from .inventory import inventory_history
+from .inventory import*
 from .products import*
 def select_action():
     while True:
@@ -27,8 +27,8 @@ def select_action():
                     2: update_transactions,
                     3: update_inventory,
                     4: display_product_location,
-                    5: check_stock_levels,
-                    6: calculate_reorder_levels,
+                    5: lambda: products[0].check_stock_levels(),
+                    6: lambda: products[0].calculate_reorder_levels(),
                     7: lambda: products[0].update_product_details(),
                     8: verify_supplier,
                     9: lambda: view_cart(my_cart),
