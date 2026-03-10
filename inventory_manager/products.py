@@ -136,6 +136,14 @@ class Product:
         return(f"{self.name} | {self.rating} | {self.price}")
     def __repr__(self):
         return(f"Product({self.name}, {self.SKU}, {self.price})")
+    def __eq__(self, other):
+        return(self.SKU == other.SKU)
+    def __lt__(self, other):
+        return self.price < other.price
+    def __gt__(self, other):
+        return self.price > other.price
+    def __len__(self):
+        return self.stock
 products =[
     Product(
         name = "football",
