@@ -8,9 +8,9 @@ warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
 
 
 class Product:
-    def __init__(self, name, product_id, location, rating, supplier, stock, price):
+    def __init__(self, name, SKU, location, rating, supplier, stock, price):
         self.name = name
-        self.product_id = product_id
+        self.SKU = SKU
         self.location = location
         self.rating = rating
         self.supplier = supplier
@@ -21,6 +21,7 @@ class Product:
             "product rating": rating,
             "price of product": price
         }
+        self.MIN_STOCK_LEVEL = 10
     def update_product_details(self):
         while True:
             try:
@@ -42,8 +43,10 @@ class Product:
                 if update not in product.__dict__:
                     raise Exception("value entered is not present, try again")
                 value = input("enetr the new value for the product").strip()
+                original_type = type(getattr(product,update))  # it is going to return the original type
+                value = original_type(value) # explicitly converting the value to the original type
                 setattr(product, update, value)
-                print(product.__dict__)
+                print(product.dict)
                 return
             except Exception  as e:
                 print("error caught,", e)
@@ -51,7 +54,7 @@ class Product:
     def check_stock_levels(self):
             print("\n \n \n Stock levels for all products:")
             for product in products:
-                if(product.stock <= 5):
+                if(product.stock <= self.MIN_STOCK_LEVEL):
                     print(f"""
                                 ALERT!!
                                 LOW {product.name} STOCK is {product.stock} """)
@@ -63,10 +66,10 @@ class Product:
     def calculate_reorder_levels(self):
             print("\n \n \n The products we need to reorder are:")
             for product in products:
-                if(product.stock <= 5):
+                if(product.stock <= self.MIN_STOCK_LEVEL):
 
                     print(f"""
-                                We need to order more {5 - (product.stock)}  {product.name}s  """)
+                                We need to order more {self.MIN_STOCK_LEVEL - (product.stock)}  {product.name}s  """)
                 else:
                     print(f"""
                                 Stock levels are fine for {product.name}
@@ -76,7 +79,7 @@ class Product:
 # additions from your inventory history.
 
 product1 = Product(name = "football",
-        product_id = 1,
+        SKU = 1,
         location = "warehouse_A",
         rating = 4.5,
         supplier = "SUP1",
@@ -84,7 +87,7 @@ product1 = Product(name = "football",
         price = 459)
 product2 = Product( 
         name = "basketball",
-        product_id = 2,
+        SKU = 2,
         location = "warehouse_B",
         rating = 4.8,
         supplier = "SUP2",
@@ -93,7 +96,7 @@ product2 = Product(
 
 product3 = Product(
         name = "volleyball",
-        product_id = 3,
+        SKU = 3,
         location ="warehouse_C",
         rating = 5,
         supplier = "SUP3",
