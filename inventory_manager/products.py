@@ -1,4 +1,4 @@
-from .log import*
+import re
 inventory_history = [100, -30, 50, 75, -56, 120, 45, -325]
 transaction_history = []
 supplier_cred = ("SUP1","SUP2","SUP3") 
@@ -23,6 +23,8 @@ class Product:
             "product rating": rating,
             "price of product": price
         }
+        if not Product.validate_sku(SKU):
+            raise ValueError("invalid SKU format")
         Product.total_products += 1
     #add products via terminal
     def add_product(self):
@@ -31,6 +33,8 @@ class Product:
         print("--------Add New Product--------")
         name = input("Enter the Name of the product: ")
         SKU = input("Enter the SKU of the product: ")
+        while not Product.validate_sku(SKU):
+            SKU = input("Enter a valid SKU (Example: EL-1001): ")
         location = input("Enter the Location of the product: ")
         rating = int(input("Enter the Rating of the product: "))
         supplier = input("Enter the Supplier of the product: ")
@@ -124,8 +128,12 @@ class Product:
     @classmethod
     def get_total_products(cls):
         print("Total number of products are",cls.total_products)
-# Build a list that captures only the positive stock 
-# additions from your inventory history.
+
+
+    @staticmethod
+    def validate_sku(SKU):
+        pattern = r'^[A-Z]{2}-\d{4}$'
+        return bool(re.match(pattern, SKU))
 
 products =[
     Product(
