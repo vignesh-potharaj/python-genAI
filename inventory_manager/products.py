@@ -71,7 +71,7 @@ class Product:
                 print("error caught,", e)
     def display_products(self):
         for index, product in enumerate(products):
-            print(f"{index + 1} {product.name}")
+            print(f"{index + 1} {product}")
 
     def check_stock_levels(self):
         print("\n \n \n Stock levels for all products:")
@@ -128,17 +128,18 @@ class Product:
     @classmethod
     def get_total_products(cls):
         print("Total number of products are",cls.total_products)
-
-
     @staticmethod
     def validate_sku(SKU):
         pattern = r'^[A-Z]{2}-\d{4}$'
         return bool(re.match(pattern, SKU))
-
+    def __str__(self):
+        return(f"{self.name} | {self.rating} | {self.price}")
+    def __repr__(self):
+        return(f"Product({self.name}, {self.SKU}, {self.price})")
 products =[
     Product(
         name = "football",
-        SKU = "EL101",
+        SKU = "EL-1001",
         location = "warehouse_A",
         rating = 4.5,
         supplier = "SUP1",
@@ -146,7 +147,7 @@ products =[
         price = 459),
     Product( 
             name = "basketball",
-            SKU = "EL102",
+            SKU = "EL-1002",
             location = "warehouse_B",
             rating = 4.8,
             supplier = "SUP2",
@@ -154,7 +155,7 @@ products =[
             price = 999),
     Product(
             name = "volleyball",
-            SKU = "EL103",
+            SKU = "EL-1003",
             location ="warehouse_C",
             rating = 5,
             supplier = "SUP3",
