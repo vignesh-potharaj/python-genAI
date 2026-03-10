@@ -8,6 +8,8 @@ warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
 
 
 class Product:
+    MIN_STOCK_LEVEL = 10
+    total_products = 0
     def __init__(self, name, SKU, location, rating, supplier, stock, price):
         self.name = name
         self.SKU = SKU
@@ -21,7 +23,7 @@ class Product:
             "product rating": rating,
             "price of product": price
         }
-        self.MIN_STOCK_LEVEL = 10
+        Product.total_products += 1
     def update_product_details(self):
         while True:
             try:
@@ -103,7 +105,10 @@ class Product:
         print("------Product Info------")
         for key, value in product.__dict__.items():
             if key in allowed_fields:
-                print(f"{key}: {value}")         
+                print(f"{key}: {value}")
+    @classmethod
+    def get_total_products(cls):
+        print("Total number of products are",cls.total_products)
 # Build a list that captures only the positive stock 
 # additions from your inventory history.
 

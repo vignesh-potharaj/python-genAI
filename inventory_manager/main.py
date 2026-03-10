@@ -23,7 +23,8 @@ def select_action():
                                         13. view product summary
                                         14. update stock
                                         15. display product info
-                                        16.exit
+                                        16. get total number of products
+                                        17.exit
                 """)
             action_map = {
                     1: Inventory.display_inventory_history,
@@ -41,7 +42,7 @@ def select_action():
                     13: lambda: products[0].get_product_summary(),
                     14: lambda: products[0].update_stock(),
                     15: lambda: products[0].display_info(),
-                   
+                    16: lambda: Product.get_total_products()
                 }
             length_of_actions = len(action_map) + 1
 
