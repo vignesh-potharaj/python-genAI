@@ -24,12 +24,27 @@ class Product:
             "price of product": price
         }
         Product.total_products += 1
+    #add products via terminal
+    def add_product(self):
+        print("Available products")
+        Product.display_products(self)
+        print("--------Add New Product--------")
+        name = input("Enter the Name of the product: ")
+        SKU = input("Enter the SKU of the product: ")
+        location = input("Enter the Location of the product: ")
+        rating = int(input("Enter the Rating of the product: "))
+        supplier = input("Enter the Supplier of the product: ")
+        stock = int(input("Enter the Stock of the product: "))
+        price = int(input("Enter the Price of the product: "))
+        new_product = Product(name, SKU, location, rating, supplier, stock, price)
+        products.append(new_product)
+        Product.display_info(self, new_product)
+        # update product's details
     def update_product_details(self):
         while True:
             try:
                 print('enter which product to update\n')
-                for index, product in enumerate(products):
-                    print(f"{index + 1} {product.name}")
+                Product.display_products(self)
                 product_index = int(input())
                 product_index = product_index - 1
                 product = products[product_index]
@@ -45,11 +60,14 @@ class Product:
                 value = input("enetr the new value for the product").strip()
                 original_type = type(getattr(product,update))  # it is going to return the original type
                 value = original_type(value) # explicitly converting the value to the original type
-                setattr(product, update, value)
+                setattr(product, update, value) #updating theproduct
                 self.display_info(product)
                 return
             except Exception  as e:
                 print("error caught,", e)
+    def display_products(self):
+        for index, product in enumerate(products):
+            print(f"{index + 1} {product.name}")
 
     def check_stock_levels(self):
         print("\n \n \n Stock levels for all products:")
@@ -75,21 +93,18 @@ class Product:
                             Stock levels are fine for {product.name}
                             STOCK is {product.stock}""")
     def get_product_summary(self):
-        for index, product in enumerate(products):
-            print(index + 1, product.name)
+        Product.display_products(self)
         product_pointer = int(input("select the product to view "))
         print(products[product_pointer - 1].product_summary)
     def update_stock(self):
-        for index, product in enumerate(products):
-            print(index + 1, product.name)
+        Product.display_products(self)
         product_pointer = int(input("select the product to update stock "))
         new_stock = int(input("enter the new stock"))
         setattr(products[product_pointer - 1], "stock", new_stock)
         print(f"{products[product_pointer - 1].name}'s stock is updated to {products[product_pointer - 1].stock}")
     def display_info(self, product = None):
         if product == None:
-            for index, product in enumerate(products):
-                print(index + 1, product.name)
+            Product.display_products(self)
             product_pointer = int(input("select the product to update stock "))
             product_pointer -= 1
             product = products[product_pointer]
@@ -112,30 +127,28 @@ class Product:
 # Build a list that captures only the positive stock 
 # additions from your inventory history.
 
-product1 = Product(
+products =[
+    Product(
         name = "football",
         SKU = "EL101",
         location = "warehouse_A",
         rating = 4.5,
         supplier = "SUP1",
         stock = 2,
-        price = 459)
-product2 = Product( 
-        name = "basketball",
-        SKU = "EL102",
-        location = "warehouse_B",
-        rating = 4.8,
-        supplier = "SUP2",
-        stock = 7,
-        price = 999)
-
-product3 = Product(
-        name = "volleyball",
-        SKU = "EL103",
-        location ="warehouse_C",
-        rating = 5,
-        supplier = "SUP3",
-        stock = 0,
-        price = 1229)
-
-products =[product1, product2, product3]
+        price = 459),
+    Product( 
+            name = "basketball",
+            SKU = "EL102",
+            location = "warehouse_B",
+            rating = 4.8,
+            supplier = "SUP2",
+            stock = 7,
+            price = 999),
+    Product(
+            name = "volleyball",
+            SKU = "EL103",
+            location ="warehouse_C",
+            rating = 5,
+            supplier = "SUP3",
+            stock = 0,
+            price = 1229)]
