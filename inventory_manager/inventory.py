@@ -81,7 +81,7 @@ class Inventory:
         elif(action == "deduct"):
             inventory_history.remove(value, inventory_history.index(value))
             print("The updated inventory is",inventory_history)
-        log_inventory(action, value)
+        Logger.log_inventory(action, value)
     @staticmethod
     def update_transactions():
         global transaction_history
