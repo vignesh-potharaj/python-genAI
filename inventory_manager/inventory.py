@@ -27,6 +27,16 @@ class Inventory:
     def display_products(self):
         for index, product in enumerate(products):
             print(f"{index + 1} {product}")
+    def find_product(self, SKU = None):
+        if SKU is None:
+            SKU =  input("enter the SKU to search any product(ex: EL-1001): ")
+            while not Product.validate_sku(SKU):
+                SKU = input("Enter a valid SKU (Example: EL-1001): ")
+        for product in products:
+            if product.SKU == SKU:
+                product.display_info(product=product)
+                return
+        print("No product matched for the given SKU")
 
     @staticmethod
     @print_decorator

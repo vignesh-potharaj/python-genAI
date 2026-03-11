@@ -90,9 +90,9 @@ class Product:
         setattr(products[product_pointer - 1], "stock", new_stock)
         print(f"{products[product_pointer - 1].name}'s stock is updated to {products[product_pointer - 1].stock}")
     def display_info(self, product = None):
-        if product == None:
+        if product is None:
             Product.display_products(self)
-            product_pointer = int(input("select the product to update stock "))
+            product_pointer = int(input("select the product to view "))
             product_pointer -= 1
             product = products[product_pointer]
         allowed_fields = [
