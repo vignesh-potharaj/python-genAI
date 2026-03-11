@@ -37,6 +37,33 @@ class Inventory:
                 product.display_info(product=product)
                 return
         print("No product matched for the given SKU")
+    def list_all_products(self):
+        for product in products:
+            product.display_info(product=product)
+    def check_stock_levels(self):
+        print("\n \n \n Stock levels for all products:")
+        for product in products:
+            if(product.stock <= self.MIN_STOCK_LEVEL):
+                print(f"""
+                            ALERT!!
+                            LOW {product.name} STOCK is {product.stock} """)
+            else:
+                print(f"""
+                            Stock levels are fine 
+                            {product.name} STOCK is {product.stock}""")
+
+    def calculate_reorder_levels(self):
+        print("\n \n \n The products we need to reorder are:")
+        for product in products:
+            if(product.stock <= self.MIN_STOCK_LEVEL):
+
+                print(f"""
+                            We need to order more {self.MIN_STOCK_LEVEL - (product.stock)}  {product.name}s  """)
+            else:
+                print(f"""
+                            Stock levels are fine for {product.name}
+                            STOCK is {product.stock}""")
+
 
     @staticmethod
     @print_decorator
