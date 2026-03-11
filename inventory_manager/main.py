@@ -4,6 +4,7 @@ from .warehouses import*
 from .cart import*
 from .inventory import*
 from .products import*
+inventory = Inventory()
 def select_action():
     while True:
             print("""
@@ -44,7 +45,7 @@ def select_action():
                     14: lambda: products[0].update_stock(),
                     15: lambda: products[0].display_info(),
                     16: lambda: Product.get_total_products(),
-                    17: lambda: products[0].add_product()
+                    17: lambda: inventory.add_product()
                 }
             length_of_actions = len(action_map) + 1
 

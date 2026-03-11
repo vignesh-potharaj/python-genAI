@@ -26,23 +26,6 @@ class Product:
         if not Product.validate_sku(SKU):
             raise ValueError("invalid SKU format")
         Product.total_products += 1
-    #add products via terminal
-    def add_product(self):
-        print("Available products")
-        Product.display_products(self)
-        print("--------Add New Product--------")
-        name = input("Enter the Name of the product: ")
-        SKU = input("Enter the SKU of the product: ")
-        while not Product.validate_sku(SKU):
-            SKU = input("Enter a valid SKU (Example: EL-1001): ")
-        location = input("Enter the Location of the product: ")
-        rating = int(input("Enter the Rating of the product: "))
-        supplier = input("Enter the Supplier of the product: ")
-        stock = int(input("Enter the Stock of the product: "))
-        price = int(input("Enter the Price of the product: "))
-        new_product = Product(name, SKU, location, rating, supplier, stock, price)
-        products.append(new_product)
-        Product.display_info(self, new_product)
         # update product's details
     def update_product_details(self):
         while True:
