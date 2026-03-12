@@ -10,7 +10,7 @@ class Inventory:
         #add products via terminal
     def add_product(self):
         print("Available products")
-        self.display_products(self)
+        self.display_products()
         print("--------Add New Product--------")
         name = input("Enter the Name of the product: ")
         SKU = input("Enter the SKU of the product: ")
