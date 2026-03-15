@@ -6,7 +6,7 @@ shipping_charges = lambda cart: int(cart * 0.1) # lambda function
 class Cart:
     def view_cart(self, cart=None): #deafault parameter
         if cart is None:
-            cart = [product1]
+            cart = [products[1]]
         total = 0
         for product in cart:
             print(f"name : {product.name} \nprice: {product.price}")

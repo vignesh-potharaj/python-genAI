@@ -1,10 +1,27 @@
-from .inventory import*
 from .suppliers import*
 from .warehouses import*
 from .cart import*
-from .inventory import*
 from .products import*
 inventory = Inventory()
+def select_action():
+    while True:
+        print("""
+                        Welcome to Inventory Management Application
+                        "Select the category you want to use"
+                        1. Products
+                        2. Inventory
+                        3. Cart
+                        4. Exit Application
+              """)
+        action_map = {
+             
+        }
+def product_action():
+     pass
+def inventory_action():
+     pass
+def cart_action():
+     pass
 def select_action():
     while True:
             print("""
@@ -35,10 +52,10 @@ def select_action():
                     2: Inventory.update_transactions,
                     3: Inventory.update_inventory,
                     4: display_product_location,
-                    5: lambda: products[0].check_stock_levels(),
-                    6: lambda: products[0].calculate_reorder_levels(),
+                    5: lambda: inventory.check_stock_levels(),
+                    6: lambda: inventory.calculate_reorder_levels(),
                     7: lambda: products[0].update_product_details(),
-                    8: verify_supplier,
+                    8: lambda: verify_supplier(inventory),
                     9: lambda: Cart.view_cart(my_cart),
                     10: add_to_cart,
                     11: check_out,
@@ -69,4 +86,4 @@ def select_action():
 
 # Add an item 
 if __name__ == "__main__":
-    select_action()
+    select_action
