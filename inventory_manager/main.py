@@ -1,89 +1,87 @@
-from .suppliers import*
-from .warehouses import*
-from .cart import*
-from .products import*
+from .suppliers import *
+from .warehouses import *
+from .cart import *
+from .products import *
+
 inventory = Inventory()
-def select_action():
+
+
+def run_menu(title, actions):
     while True:
-        print("""
-                        Welcome to Inventory Management Application
-                        "Select the category you want to use"
-                        1. Products
-                        2. Inventory
-                        3. Cart
-                        4. Exit Application
-              """)
-        action_map = {
-             
-        }
-def product_action():
-     pass
-def inventory_action():
-     pass
-def cart_action():
-     pass
-def select_action():
-    while True:
-            print("""
-                                        Welcome to Inventory & Data Structure Management
-                                        1. Display Inventory History
-                                        2. Update Transactions
-                                        3. Update Inventory
-                                        4. Display Product Location
-                                        5. Check Stock Levels
-                                        6. Calculate Reorder Levels
-                                        7. Update Product Details
-                                        8. Verify supplier
-                                        9. View Cart
-                                        10. Add to Cart
-                                        11. Check Out
-                                        12. View only positive stock transactions
-                                        13. view product summary
-                                        14. update stock
-                                        15. display product info
-                                        16. get total number of products
-                                        17. add product
-                                        18. find product
-                                        19. list all products info
-                                        20.exit
-                """)
-            action_map = {
-                    1: Inventory.display_inventory_history,
-                    2: Inventory.update_transactions,
-                    3: Inventory.update_inventory,
-                    4: display_product_location,
-                    5: lambda: inventory.check_stock_levels(),
-                    6: lambda: inventory.calculate_reorder_levels(),
-                    7: lambda: products[0].update_product_details(),
-                    8: lambda: verify_supplier(inventory),
-                    9: lambda: Cart.view_cart(my_cart),
-                    10: add_to_cart,
-                    11: check_out,
-                    12: Inventory.view_only_positive_stock,
-                    13: lambda: products[0].get_product_summary(),
-                    14: lambda: products[0].update_stock(),
-                    15: lambda: products[0].display_info(),
-                    16: lambda: Product.get_total_products(),
-                    17: lambda: inventory.add_product(),
-                    18: lambda: inventory.find_product(),
-                    19: lambda: inventory.list_all_products(),
+        print(f"\n----- {title} -----")
 
-                }
-            length_of_actions = len(action_map) + 1
+        for key, value in actions.items():
+            print(f"{key}. {value[0]}")
 
-            try:    
-                action = int(input(f"eneter the listed number to perform the respective action (1 to {length_of_actions})"))
-                if 1 <= action <= length_of_actions :
-                    if action == length_of_actions:
-                         break
-                    action_map[action]()
-                else:
-                    print(f"enter a number between 1 and {length_of_actions}") 
+        try:
+            choice = int(input("Select an option: "))
 
-            except ValueError:
-                print("enter a valid number")
+            if choice not in actions:
+                print("Invalid option")
+                continue
+
+            if actions[choice][1] is None:
+                break
+
+            actions[choice][1]()
+
+        except ValueError:
+            print("Enter a valid number")
 
 
-# Add an item 
+
+# MAIN MENU 
+
+main_actions = {
+    1: ("Products", lambda: run_menu("Product Menu", product_actions)),
+    2: ("Inventory", lambda: run_menu("Inventory Menu", inventory_actions)),
+    3: ("Cart", lambda: run_menu("Cart Menu", cart_actions)),
+    4: ("Exit Application", None)
+}
+
+# PRODUCT MENU 
+
+product_actions = {
+    1: ("View Product Summary", lambda: products[0].get_product_summary()),
+    2: ("Update Product Details", lambda: products[0].update_product_details()),
+    3: ("Update Stock", lambda: products[0].update_stock()),
+    4: ("Display Product Info", lambda: products[0].display_info()),
+    5: ("Get Total Products", Product.get_total_products),
+    6: ("Add Product", inventory.add_product),
+    7: ("Find Product", inventory.find_product),
+    8: ("List All Products", inventory.list_all_products),
+    9: ("Back", None)
+}
+
+
+# INVENTORY MENU 
+
+inventory_actions = {
+    1: ("Display Inventory History", Inventory.display_inventory_history),
+    2: ("Update Transactions", Inventory.update_transactions),
+    3: ("Update Inventory", Inventory.update_inventory),
+    4: ("Display Product Location", display_product_location),
+    5: ("Check Stock Levels", inventory.check_stock_levels),
+    6: ("Calculate Reorder Levels", inventory.calculate_reorder_levels),
+    7: ("View Positive Stock Transactions", Inventory.view_only_positive_stock),
+    8: ("Verify Supplier", lambda: verify_supplier(inventory)),
+    9: ("Back", None)
+}
+
+
+# CART MENU 
+
+cart_actions = {
+    1: ("View Cart", lambda: Cart.view_cart(my_cart)),
+    2: ("Add To Cart", add_to_cart),
+    3: ("Checkout", check_out),
+    4: ("Back", None)
+}
+
+
+def main():
+    run_menu("Inventory Management System", main_actions)
+
+
 if __name__ == "__main__":
-    select_action
+    main()
