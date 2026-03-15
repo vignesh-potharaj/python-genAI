@@ -67,7 +67,7 @@ class Product:
         new_stock = int(input("enter the new stock"))
         setattr(products[product_pointer - 1], "stock", new_stock)
         print(f"{products[product_pointer - 1].name}'s stock is updated to {products[product_pointer - 1].stock}")
-        Logger.log_action(action="update stock", product_name = products[product_pointer - 1].name, new_value= new_stock)
+        Logger.log_action(action="update_stock", product_name = products[product_pointer - 1].name, new_value= new_stock)
     def display_info(self, product = None):
         if product is None:
             Product.display_products(self)

@@ -4,7 +4,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 INVENTORY_FILE = os.path.join(BASE_DIR, "inventory_log.json")
-PRODUCT_FILE = os.path.join(BASE_DIR, "product_.json")
+PRODUCT_FILE = os.path.join(BASE_DIR, "product_log.json")
 class Logger:
     @staticmethod
     def load_data(FILE):
@@ -36,7 +36,7 @@ class Logger:
     @staticmethod
     def log_action(action, product_name, new_value):
         log = {
-            "time_stamp": datetime.now().isoformat(),
+            "time stamp": datetime.now().isoformat(),
             "action": action,
             "product_name": product_name,
             "new_value": new_value
