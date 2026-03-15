@@ -34,11 +34,13 @@ class Logger:
         except Exception as e:
             print("Error caught", e)
     @staticmethod
-    def log_action(action, product_name, new_value):
+    def log_action(action, product_name, value_name, old_value, new_value):
         log = {
             "time stamp": datetime.now().isoformat(),
             "action": action,
             "product_name": product_name,
+            "value_name": value_name,
+            "old_value": old_value,
             "new_value": new_value
         }
         try:
