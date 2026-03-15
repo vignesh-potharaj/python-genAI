@@ -68,7 +68,7 @@ class Product:
         Product.display_products(self)
         product_pointer = int(input("select the product to update stock "))
         new_stock = int(input("enter the new stock"))
-        prev_value = getattr(product, update, value)
+        prev_value = getattr(products[product_pointer - 1], "stock")
         setattr(products[product_pointer - 1], "stock", new_stock)
         print(f"{products[product_pointer - 1].name}'s stock is updated to {products[product_pointer - 1].stock}")
         Logger.log_action(action="update_stock", product_name = products[product_pointer - 1].name, value_name="stock",old_value=prev_value, new_value= new_stock)
