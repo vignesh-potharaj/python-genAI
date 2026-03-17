@@ -7,8 +7,6 @@ supplier_cred = ("SUP1","SUP2","SUP3")
 
 warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
 
-
-
 class Product:
     MIN_STOCK_LEVEL = 10
     total_products = 0
@@ -43,7 +41,7 @@ class Product:
                 print("error caught,", e)
         while True:
             try:
-                update = input(f"Select what info to update").strip()
+                update = input(f"Select what info to update ").strip()
                 if update not in product.__dict__:
                     raise Exception("value entered is not present, try again")
                 value = input("enetr the new value for the product").strip()
@@ -168,7 +166,6 @@ class Inventory:
                 print(f"""
                             Stock levels are fine for {product.name}
                             STOCK is {product.stock}""")
-
 
     @staticmethod
     @print_decorator

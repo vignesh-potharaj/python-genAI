@@ -13,3 +13,5 @@ def verify_supplier(inventory):
         supplier found in database
         product {product.name} VERIFIED SUPPLIER-{product.supplier}
 """)
+    else: 
+        print("supplier not found")
