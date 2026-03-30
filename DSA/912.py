@@ -6,11 +6,10 @@ class Solution(object):
         """
         if len(nums) <= 1: 
             return nums
-        mid = len(nums) 
+        mid = len(nums) // 2
         left = self.sortArray(nums[:mid]) 
         right = self.sortArray(nums[mid:]) 
         return self.merge(left, right)
-
     def merge(self, left, right):
         i = 0 
         j = 0 
