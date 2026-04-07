@@ -4,7 +4,6 @@ from .utils import print_decorator
 inventory_history = [100, -30, 50, 75, -56, 120, 45, -325]
 transaction_history = []
 supplier_cred = ("SUP1","SUP2","SUP3") 
-
 warehouse_locations = {"warehouse_A", "warehouse_B", "warehouse_C"}
 
 class Product:
@@ -205,7 +204,7 @@ products =[
         supplier = "SUP1",
         stock = 2,
         price = 459),
-    Product( 
+    Product(
             name = "basketball",
             SKU = "EL-1002",
             location = "warehouse_B",
