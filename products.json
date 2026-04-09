@@ -27,12 +27,12 @@
         "price": 1229
     },
     "EL-1004": {
-        "name": "web",
+        "name": "bjh",
         "SKU": "EL-1004",
         "location": "warehouse_A",
         "rating": 4,
-        "supplier": "4",
-        "stock": 4,
-        "price": 4646
+        "supplier": "SUP1",
+        "stock": 33,
+        "price": 3332
     }
 }

@@ -2,7 +2,7 @@ from .suppliers import *
 from .warehouses import *
 from .cart import *
 from .products import *
-
+from .storage import*
 inventory = Inventory()
 
 
@@ -31,12 +31,17 @@ def run_menu(title, actions):
 
 
 # MAIN MENU 
+def exit_app():
+    Storage.save_inventory(products)
+    print("Inventory saved. Closing application...")
+    exit()
+
 
 main_actions = {
     1: ("Products", lambda: run_menu("Product Menu", product_actions)),
     2: ("Inventory", lambda: run_menu("Inventory Menu", inventory_actions)),
     3: ("Cart", lambda: run_menu("Cart Menu", cart_actions)),
-    4: ("Exit Application", None)
+    4: ("Save and Exit", exit_app) # Call the helper instead of 'None'
 }
 
 # PRODUCT MENU 
@@ -58,14 +63,13 @@ product_actions = {
 
 inventory_actions = {
     1: ("Display Inventory History", Inventory.display_inventory_history),
-    2: ("Update Transactions", Inventory.update_transactions),
-    3: ("Update Inventory", Inventory.update_inventory),
-    4: ("Display Product Location", display_product_location),
-    5: ("Check Stock Levels", inventory.check_stock_levels),
-    6: ("Calculate Reorder Levels", inventory.calculate_reorder_levels),
-    7: ("View Positive Stock Transactions", Inventory.view_only_positive_stock),
-    8: ("Verify Supplier", lambda: verify_supplier(inventory)),
-    9: ("Back", None)
+    2: ("Update Inventory", Inventory.update_inventory),
+    3: ("Display Product Location", display_product_location),
+    4: ("Check Stock Levels", inventory.check_stock_levels),
+    5: ("Calculate Reorder Levels", inventory.calculate_reorder_levels),
+    6: ("View Positive Stock Transactions", Inventory.view_only_positive_stock),
+    7: ("Verify Supplier", lambda: verify_supplier(inventory)),
+    8: ("Back", None)
 }
 
 
@@ -80,8 +84,18 @@ cart_actions = {
 
 
 def main():
-    run_menu("Inventory Management System", main_actions)
+    # 1. Try to load saved data
+    loaded_data = Storage.load_inventory()
+    
+    if loaded_data:
+        # 2. If we found data, clear the defaults and use the saved list
+        products.clear()
+        products.extend(loaded_data)
+        print(f"Loaded {len(products)} products from file.")
+    else:
+        print("No save file found. Using default products.")
 
+    run_menu("Inventory Management System", main_actions)
 
 if __name__ == "__main__":
     main()
