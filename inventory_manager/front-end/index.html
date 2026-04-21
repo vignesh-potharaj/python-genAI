@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventory Manager - Frontend</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Inventory Manager</h1>
+    <p class="subtitle">Select an action to continue</p>
+
+    <!-- Beginner-style menu that mirrors the Python menu in main.py -->
+    <div class="menu" id="main-menu">
+      <button onclick="showMain('Products')">Products</button>
+      <button onclick="showMain('Inventory')">Inventory</button>
+      <button onclick="showMain('Cart')">Cart</button>
+      <button onclick="showMain('Save and Exit')">Save & Exit</button>
+    </div>
+
+    <!-- Submenu area will be filled dynamically -->
+    <div id="submenu" class="submenu" style="display:none">
+      <h2 id="submenu-title"></h2>
+      <ul id="submenu-list"></ul>
+      <div style="margin-top:10px">
+        <button onclick="backToMain()" class="small">Back</button>
+      </div>
+    </div>
+
+    <div id="output" class="output">Click a button to see an action.</div>
+
+  </div>
+
+  <script>
+    // Beginner JS data: actions mirror the Python menus in main.py (static front-end)
+    const actions = {
+      'Products': [
+        'View Product Summary',
+        'Update Product Details',
+        'Update Stock',
+        'Display Product Info',
+        'Get Total Products',
+        'Add Product',
+        'Find Product',
+        'List All Products'
+      ],
+      'Inventory': [
+        'Display Inventory History',
+        'Update Inventory',
+        'Display Product Location',
+        'Check Stock Levels',
+        'Calculate Reorder Levels',
+        'View Positive Stock Transactions',
+        'Verify Supplier'
+      ],
+      'Cart': [
+        'View Cart',
+        'Add To Cart',
+        'Checkout'
+      ],
+      'Save and Exit': [
+        'Save inventory to file',
+        'Exit application'
+      ]
+    };
+
+    function showMain(name) {
+      // populate submenu
+      const list = document.getElementById('submenu-list');
+      const title = document.getElementById('submenu-title');
+      list.innerHTML = '';
+      title.textContent = name;
+
+      actions[name].forEach((item, idx) => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.textContent = (idx + 1) + '. ' + item;
+        btn.onclick = () => performAction(name, idx);
+        btn.className = 'submenu-btn';
+        li.appendChild(btn);
+        list.appendChild(li);
+      });
+
+      // show submenu and hide main menu for a simple beginner UI
+      document.getElementById('main-menu').style.display = 'none';
+      document.getElementById('submenu').style.display = 'block';
+      document.getElementById('output').textContent = 'Choose an action from the ' + name + ' menu.';
+    }
+
+    function backToMain() {
+      document.getElementById('submenu').style.display = 'none';
+      document.getElementById('main-menu').style.display = 'flex';
+      document.getElementById('output').textContent = 'Back to main menu.';
+    }
+
+    function showMessage(message) {
+      const out = document.getElementById('output');
+      out.textContent = message;
+      // mild visual cue: briefly add a class then remove it
+      out.classList.add('pulse');
+      setTimeout(() => out.classList.remove('pulse'), 700);
+    }
+
+    function performAction(category, index) {
+      const chosen = actions[category][index];
+      const outText = category + ' → ' + chosen;
+
+      // Update the output area instead of showing pop-ups
+      if (category === 'Save and Exit') {
+        if (index === 0) {
+          showMessage(outText + ' — Saving inventory to file (simulated).');
+        } else if (index === 1) {
+          showMessage(outText + ' — Exiting application (simulated).');
+        }
+      } else if (category === 'Cart' && chosen === 'Checkout') {
+        showMessage(outText + ' — Checking out (simulated).');
+      } else {
+        // Generic feedback for other actions
+        showMessage(outText + ' — Would run this action (static demo).');
+      }
+    }
+  </script>
+</body>
+</html>
